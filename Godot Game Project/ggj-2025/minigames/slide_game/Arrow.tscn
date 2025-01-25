@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://yagyfec31i3v"]
+
+[ext_resource type="PackedScene" uid="uid://c7518br85axr5" path="res://minigames/slide_game/assets/models/arrow_model.tscn" id="1_qenrw"]
+
+[node name="Root" type="Node3D"]
+
+[node name="arrow" parent="." instance=ExtResource("1_qenrw")]
+transform = Transform3D(-1.31134e-07, 0, -3, 0, 3, 0, 3, 0, -1.31134e-07, 0, 0, -1)

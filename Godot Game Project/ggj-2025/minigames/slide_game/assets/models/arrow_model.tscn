@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7518br85axr5"]
+
+[ext_resource type="PackedScene" uid="uid://brgvdnr0eh058" path="res://minigames/slide_game/assets/models/arrow.blend" id="1_o83an"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hjkmc"]
+albedo_color = Color(1, 0, 0, 1)
+
+[node name="arrow" instance=ExtResource("1_o83an")]
+
+[node name="Arrow" parent="." index="0"]
+cast_shadow = 0
+surface_material_override/0 = SubResource("StandardMaterial3D_hjkmc")

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://fojg3gv1wl5y"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_xwng5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_02mmm"]
+albedo_color = Color(0.680195, 0.671069, 0.352748, 1)
+
+[node name="Mug" type="RigidBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+shape = SubResource("CylinderShape3D_xwng5")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+radius = 0.735
+sides = 12
+material = SubResource("StandardMaterial3D_02mmm")

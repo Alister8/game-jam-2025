@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://pec85r36hakm"]
+
+[ext_resource type="PackedScene" uid="uid://dgvtu3hq110im" path="res://minigames/slide_game/assets/models/goal.blend" id="1_k3ie3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q3hbb"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.26, 0.63, 1, 0.333333)
+
+[node name="goal" instance=ExtResource("1_k3ie3")]
+
+[node name="Cylinder" parent="." index="0"]
+cast_shadow = 0
+surface_material_override/0 = SubResource("StandardMaterial3D_q3hbb")
