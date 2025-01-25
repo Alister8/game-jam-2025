@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://driri24d0gnpl"]
+
+[ext_resource type="Script" path="res://mug.gd" id="1_mgxsn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fsk1t"]
+size = Vector2(70, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mgxsn"]
+size = Vector2(15, 180)
+
+[node name="Node2D" type="CharacterBody2D"]
+script = ExtResource("1_mgxsn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_fsk1t")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-42.5, -80)
+shape = SubResource("RectangleShape2D_mgxsn")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(42.5, -80)
+shape = SubResource("RectangleShape2D_mgxsn")
