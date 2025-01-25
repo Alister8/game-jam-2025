@@ -2,8 +2,8 @@ extends CharacterBody2D
 
 var move_dir: Vector2 
 var walk_vel:Vector2
-var speed: float = 10
-var acceleration: float = 10
+var speed: float = 100
+var acceleration: float = 100
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,7 +21,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _walk(delta: float) -> Vector2:
-	move_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_backwards")
+	move_dir = Input.get_vector("left", "right", "up", "down")
 	var walk_dir: Vector2 = Vector2(0, 0)
 	walk_vel = walk_vel.move_toward(walk_dir * speed * move_dir.length(), acceleration * delta)
 	return walk_vel

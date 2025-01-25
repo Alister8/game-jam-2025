@@ -1,12 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://driri24d0gnpl"]
+[gd_scene load_steps=6 format=3 uid="uid://driri24d0gnpl"]
 
-[ext_resource type="Script" path="res://mug.gd" id="1_mgxsn"]
+[ext_resource type="Script" uid="uid://cbvx6br20w5kd" path="res://minigames/pour_game/mug/mug.gd" id="1_mgxsn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fsk1t"]
 size = Vector2(70, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mgxsn"]
 size = Vector2(15, 180)
+
+[sub_resource type="Gradient" id="Gradient_mgxsn"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uv50i"]
+gradient = SubResource("Gradient_mgxsn")
 
 [node name="Node2D" type="CharacterBody2D"]
 script = ExtResource("1_mgxsn")
@@ -21,3 +26,8 @@ shape = SubResource("RectangleShape2D_mgxsn")
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
 position = Vector2(42.5, -80)
 shape = SubResource("RectangleShape2D_mgxsn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-9.53674e-07, -80)
+scale = Vector2(1.5625, 2.8125)
+texture = SubResource("GradientTexture2D_uv50i")

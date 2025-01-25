@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bo2fi3koo0vma"]
+
+[ext_resource type="PackedScene" uid="uid://driri24d0gnpl" path="res://minigames/pour_game/mug/mug.tscn" id="1_la5b2"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Node2D" parent="." instance=ExtResource("1_la5b2")]
+position = Vector2(380, 421)
