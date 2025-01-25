@@ -1,0 +1,160 @@
+[gd_scene load_steps=14 format=3 uid="uid://c04js872l70y"]
+
+[ext_resource type="Script" uid="uid://cflc2bmio8f6l" path="res://minigames/slide_game/scripts/slide_game.gd" id="1_yehqo"]
+[ext_resource type="PackedScene" uid="uid://jqagqcmkd2tt" path="res://minigames/slide_game/bar/Bar.tscn" id="2_86a4g"]
+[ext_resource type="PackedScene" uid="uid://fojg3gv1wl5y" path="res://minigames/slide_game/Mug.tscn" id="2_sqiqn"]
+[ext_resource type="PackedScene" uid="uid://yagyfec31i3v" path="res://minigames/slide_game/Arrow.tscn" id="3_86a4g"]
+[ext_resource type="PackedScene" uid="uid://cpvuk5w34kaps" path="res://minigames/slide_game/WinArea.tscn" id="4_3m63e"]
+[ext_resource type="PackedScene" uid="uid://bfhaxlnkuyqjg" path="res://minigames/slide_game/assets/models/room.blend" id="6_86a4g"]
+[ext_resource type="PackedScene" uid="uid://cuqqqmsacubem" path="res://minigames/slide_game/assets/models/stool.tscn" id="8_8d0rk"]
+[ext_resource type="PackedScene" uid="uid://bkuq45k230r13" path="res://minigames/slide_game/assets/models/lamp.tscn" id="8_domts"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kb7vy"]
+friction = 0.15
+
+[sub_resource type="Animation" id="Animation_ie4rx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Arrow:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -1.0472, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_4s55a"]
+resource_name = "arrow"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Arrow:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.0333333, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -1.0472, 0), Vector3(0, -2.0944, 0), Vector3(0, -1.0472, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ie4rx"]
+_data = {
+&"RESET": SubResource("Animation_ie4rx"),
+&"arrow": SubResource("Animation_4s55a")
+}
+
+[sub_resource type="Environment" id="Environment_86a4g"]
+tonemap_mode = 2
+glow_intensity = 5.6
+adjustment_enabled = true
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_yehqo")
+
+[node name="CSGBox3D" parent="." instance=ExtResource("2_86a4g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.33414, -0.132149, 0)
+
+[node name="Mug" parent="." instance=ExtResource("2_sqiqn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.179521, 0.742794, 0.0107074)
+physics_material_override = SubResource("PhysicsMaterial_kb7vy")
+
+[node name="CamAnchor2" type="Marker3D" parent="Mug"]
+transform = Transform3D(0.744324, 0, -0.667819, 0, 1, 0, 0.667819, 0, 0.744324, -0.772761, 0.481502, 1.53588)
+
+[node name="Arrow" parent="." instance=ExtResource("3_86a4g")]
+transform = Transform3D(0.0999994, 0, -0.173205, 0, 0.2, 0, 0.173205, 0, 0.0999994, 0.213227, 0.6, 0.0151288)
+visible = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Arrow"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_ie4rx")
+}
+autoplay = "arrow"
+
+[node name="CamAnchor1" type="Marker3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0.570714, -0.821149, 0, 0.821149, 0.570714, 1, 2.49467e-08, -3.58936e-08, -0.61, 2.032, 0)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PowerBar" type="ProgressBar" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -199.0
+offset_top = -53.0
+offset_right = 370.0
+offset_bottom = 33.0
+grow_horizontal = 0
+grow_vertical = 0
+rotation = -1.57079
+max_value = 30.0
+show_percentage = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(-3.58861e-08, 0.570958, -0.82098, 2.49574e-08, 0.82098, 0.570958, 1, -2.84217e-14, -4.37114e-08, -0.610188, 2.03154, 6.97793e-16)
+
+[node name="WinArea" parent="." instance=ExtResource("4_3m63e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.61705, 0.469232, 0.0669774)
+
+[node name="CamAnchor3" type="Marker3D" parent="WinArea"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.6398, 0)
+
+[node name="room" parent="." instance=ExtResource("6_86a4g")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 3.23193, -0.652913, 0.756762)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_86a4g")
+
+[node name="lamp" parent="." instance=ExtResource("8_domts")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.9, 1.68077)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="lamp"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.226886, 0)
+light_color = Color(0.903825, 0.734796, 0.673432, 1)
+light_energy = 2.0
+shadow_enabled = true
+omni_range = 6.997
+
+[node name="lamp2" parent="." instance=ExtResource("8_domts")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7235, 1.9, 1.68077)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="lamp2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.226886, 0)
+light_color = Color(0.903825, 0.734796, 0.673432, 1)
+light_energy = 2.0
+shadow_enabled = true
+omni_range = 6.997
+
+[node name="Stools" type="Node3D" parent="."]
+
+[node name="stool" parent="Stools" instance=ExtResource("8_8d0rk")]
+transform = Transform3D(0.989784, 0, 0.142577, 0, 1, 0, -0.142577, 0, 0.989784, 2.10304, -0.659545, 1.05249)
+
+[node name="stool2" parent="Stools" instance=ExtResource("8_8d0rk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.27883, -0.659545, 1.05249)
+
+[node name="stool3" parent="Stools" instance=ExtResource("8_8d0rk")]
+transform = Transform3D(0.976454, 0, -0.215724, 0, 1, 0, 0.215724, 0, 0.976454, 4.49594, -0.659545, 1.05249)
+
+[node name="stool4" parent="Stools" instance=ExtResource("8_8d0rk")]
+transform = Transform3D(0.99633, 0, -0.0855908, 0, 1, 0, 0.0855908, 0, 0.99633, 0.821593, -0.659545, 1.05249)

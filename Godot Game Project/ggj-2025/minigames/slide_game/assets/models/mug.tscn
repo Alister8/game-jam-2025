@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcg8ol48ba6f7"]
+
+[ext_resource type="PackedScene" uid="uid://dc8wnjbpnpvjt" path="res://minigames/slide_game/assets/models/mug.blend" id="1_57n5h"]
+[ext_resource type="Material" uid="uid://c737jdipupj8k" path="res://minigames/slide_game/assets/materials/Glass.material" id="2_w73mi"]
+
+[node name="mug" instance=ExtResource("1_57n5h")]
+
+[node name="Mug" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_w73mi")

@@ -6,7 +6,8 @@
 transparency = 1
 cull_mode = 2
 shading_mode = 0
-albedo_color = Color(0.26, 0.63, 1, 0.333333)
+albedo_color = Color(0.26, 0.63, 1, 0.647059)
+grow_amount = -2.576
 
 [node name="goal" instance=ExtResource("1_k3ie3")]
 

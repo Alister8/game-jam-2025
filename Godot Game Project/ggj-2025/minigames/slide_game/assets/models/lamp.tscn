@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkuq45k230r13"]
+
+[ext_resource type="PackedScene" uid="uid://csehlevd8oad8" path="res://minigames/slide_game/assets/models/lamp.blend" id="1_y5oew"]
+
+[node name="lamp" instance=ExtResource("1_y5oew")]
+
+[node name="Bulb" parent="." index="1"]
+cast_shadow = 0
