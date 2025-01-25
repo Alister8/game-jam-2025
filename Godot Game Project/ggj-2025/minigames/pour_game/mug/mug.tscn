@@ -1,33 +1,56 @@
-[gd_scene load_steps=6 format=3 uid="uid://driri24d0gnpl"]
+[gd_scene load_steps=8 format=3 uid="uid://driri24d0gnpl"]
 
-[ext_resource type="Script" uid="uid://cbvx6br20w5kd" path="res://minigames/pour_game/mug/mug.gd" id="1_mgxsn"]
+[ext_resource type="Script" uid="uid://bh7sjpmf1gcmk" path="res://minigames/pour_game/mug/mug.gd" id="1_mgxsn"]
+[ext_resource type="Texture2D" uid="uid://dulaiip58lxws" path="res://minigames/pour_game/mug/mug.png" id="2_3to7o"]
+[ext_resource type="Script" uid="uid://cbvx6br20w5kd" path="res://minigames/pour_game/mug/mug_player.gd" id="2_vpc3i"]
+[ext_resource type="Script" uid="uid://dpnejqlya8aa5" path="res://minigames/pour_game/mug/area_2d.gd" id="4_wqihn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fsk1t"]
-size = Vector2(70, 20)
+size = Vector2(100, 13)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mgxsn"]
-size = Vector2(15, 180)
+size = Vector2(12, 229)
 
-[sub_resource type="Gradient" id="Gradient_mgxsn"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p65qh"]
+size = Vector2(201, 123)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_uv50i"]
-gradient = SubResource("Gradient_mgxsn")
-
-[node name="Node2D" type="CharacterBody2D"]
+[node name="mug" type="Node2D"]
+position = Vector2(1, 20)
 script = ExtResource("1_mgxsn")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Node2D" type="CharacterBody2D" parent="."]
+position = Vector2(0, 80)
+collision_mask = 0
+script = ExtResource("2_vpc3i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D"]
+position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_fsk1t")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(-42.5, -80)
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Node2D"]
+position = Vector2(-44, -106)
 shape = SubResource("RectangleShape2D_mgxsn")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
-position = Vector2(42.5, -80)
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Node2D"]
+position = Vector2(45, -105.5)
 shape = SubResource("RectangleShape2D_mgxsn")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-9.53674e-07, -80)
-scale = Vector2(1.5625, 2.8125)
-texture = SubResource("GradientTexture2D_uv50i")
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+position = Vector2(43, -114)
+texture = ExtResource("2_3to7o")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Node2D"]
+remote_path = NodePath("../../Area2D")
+update_rotation = false
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, 80)
+script = ExtResource("4_wqihn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(4, -96)
+shape = SubResource("RectangleShape2D_p65qh")
+
+[node name="TextureRect" type="TextureRect" parent="Area2D"]
+offset_right = 40.0
+offset_bottom = 40.0
