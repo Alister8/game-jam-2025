@@ -1,12 +1,14 @@
-[gd_scene load_steps=21 format=3 uid="uid://c04js872l70y"]
+[gd_scene load_steps=23 format=3 uid="uid://c04js872l70y"]
 
 [ext_resource type="Script" uid="uid://cflc2bmio8f6l" path="res://minigames/slide_game/scripts/slide_game.gd" id="1_yehqo"]
 [ext_resource type="PackedScene" uid="uid://jqagqcmkd2tt" path="res://minigames/slide_game/bar/Bar.tscn" id="2_86a4g"]
 [ext_resource type="PackedScene" uid="uid://yagyfec31i3v" path="res://minigames/slide_game/Arrow.tscn" id="3_86a4g"]
 [ext_resource type="FontFile" uid="uid://dqj5bawxrigkg" path="res://minigames/slide_game/assets/fonts/old-town/OldTown.ttf" id="4_domts"]
 [ext_resource type="PackedScene" uid="uid://deav4dldfgplq" path="res://minigames/slide_game/Camera.tscn" id="5_8d0rk"]
+[ext_resource type="Texture2D" uid="uid://e5xkju5ehap8" path="res://minigames/slide_game/assets/mug_progress_bar/mugbar_overlay.png" id="5_dwi0s"]
 [ext_resource type="PackedScene" uid="uid://b5on0vkifi3lq" path="res://minigames/slide_game/Poster.tscn" id="5_utaqm"]
 [ext_resource type="PackedScene" uid="uid://bfhaxlnkuyqjg" path="res://minigames/slide_game/assets/models/room.blend" id="6_86a4g"]
+[ext_resource type="Texture2D" uid="uid://cm6ty7rovp15n" path="res://minigames/slide_game/assets/mug_progress_bar/mugbar_progress.png" id="6_873iv"]
 [ext_resource type="PackedScene" uid="uid://cuqqqmsacubem" path="res://minigames/slide_game/assets/models/stool.tscn" id="8_8d0rk"]
 [ext_resource type="PackedScene" uid="uid://bkuq45k230r13" path="res://minigames/slide_game/assets/models/lamp.tscn" id="8_domts"]
 
@@ -144,6 +146,17 @@ offset_right = 105.0
 offset_bottom = 83.0
 theme = SubResource("Theme_8d0rk")
 text = "Cash: $0"
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -540.0
+offset_right = 540.0
+grow_vertical = 0
+texture_over = ExtResource("5_dwi0s")
+texture_progress = ExtResource("6_873iv")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
