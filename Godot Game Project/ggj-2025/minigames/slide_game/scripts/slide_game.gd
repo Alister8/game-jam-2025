@@ -7,6 +7,7 @@ extends Node3D
 var mug_cam_anchor
 @onready var cam_anchor_1 = $CamAnchor1
 @onready var cam_anchor_3 = $CamAnchor3
+@onready var cowboy_controller = $CowboyController
 
 @onready var power_bar = $UI/PowerBar
 @onready var cash_label = $UI/CashLabel
@@ -17,7 +18,6 @@ var current_mug
 var lives = 5
 
 const TARGET = preload("res://minigames/slide_game/Target.tscn")
-@onready var target_spawns = $TargetSpawns.get_children()
 var current_target
 
 var launch_direction
@@ -31,7 +31,8 @@ func _ready():
 	arrow_animation_player.speed_scale = speed_modifier
 	spawn_mug()
 	current_state = State.POWER
-	spawn_target(target_spawns.pick_random())
+	cowboy_controller.create_cowboy()
+	cowboy_controller.soda_served.connect(_soda_served)
 
 func _physics_process(delta): 
 	match current_state:
@@ -77,22 +78,11 @@ func spawn_mug():
 	mug_cam_anchor = current_mug.cam_anchor
 	current_state = State.POWER
 	cash_label.text = "Cash: $" + var_to_str(Global.cash)
-	
-	
-func spawn_target(spawn_point: Node3D):
-	current_target = TARGET.instantiate()
-	add_child(current_target)
-	current_target.global_position = spawn_point.position
-	current_target.mug_recieved.connect(_on_mug_recieved)
-	
 
-func _on_mug_recieved():
+func _soda_served():
 	Global.cash += 10
-	print("you did it! You have $" + var_to_str(Global.cash))
+	print("Soda served! You have $" + var_to_str(Global.cash))
 	current_mug.bubble_vanish()
-	spawn_target(target_spawns.pick_random())
 	spawn_mug()
+	cowboy_controller.create_cowboy()
 	speed_modifier += 0.25
-
-func soda_served():
-	print("soda served")

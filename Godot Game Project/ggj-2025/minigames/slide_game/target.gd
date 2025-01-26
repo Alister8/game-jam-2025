@@ -14,3 +14,4 @@ func _process(delta):
 				if body.linear_velocity == Vector3.ZERO:
 					mug_recieved.emit()
 					queue_free()
+	rotation.y += 1 * delta
