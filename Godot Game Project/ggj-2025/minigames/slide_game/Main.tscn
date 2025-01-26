@@ -145,7 +145,7 @@ offset_bottom = 83.0
 theme = SubResource("Theme_8d0rk")
 text = "Cash: $0"
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="UI"]
+[node name="lives_bar" type="TextureProgressBar" parent="UI"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -153,6 +153,8 @@ anchor_bottom = 1.0
 offset_top = -540.0
 offset_right = 540.0
 grow_vertical = 0
+value = 100.0
+fill_mode = 3
 texture_over = ExtResource("5_dwi0s")
 texture_progress = ExtResource("6_873iv")
 

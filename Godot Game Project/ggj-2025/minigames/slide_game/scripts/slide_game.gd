@@ -14,6 +14,7 @@ var mug_cam_anchor
 @onready var mug_spawn = $MugSpawn
 const MUG = preload("res://minigames/slide_game/Mug.tscn")
 var current_mug
+var lives = 5
 
 const TARGET = preload("res://minigames/slide_game/Target.tscn")
 @onready var target_spawns = $TargetSpawns.get_children()
@@ -60,6 +61,11 @@ func _physics_process(delta):
 		State.FAILURE: 
 			print("you missed")
 			current_mug.bubble_vanish()
+			lives -= 1
+			$UI/lives_bar.value = lives * 20
+			if lives <= 0:
+				get_tree().change_scene_to_file("res://menus/lose/lose.tscn")
+				pass
 			spawn_mug()
 			
 			

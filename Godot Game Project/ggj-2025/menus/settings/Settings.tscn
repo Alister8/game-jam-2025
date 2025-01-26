@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsioljkqxifhp"]
+
+[ext_resource type="Script" uid="uid://b0bid2nck4s4u" path="res://menus/settings/settings.gd" id="1_ccpk8"]
+[ext_resource type="AudioStream" uid="uid://d4b32srsuny7j" path="res://minigames/slide_game/assets/sfx/music/synth-banjo-14463.mp3" id="2_mx1sf"]
+[ext_resource type="Theme" uid="uid://b3riqp06mymfj" path="res://menus/main_menu/theme.tres" id="2_tkmbs"]
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ccpk8")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Fullscreen" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_tkmbs")
+toggle_mode = true
+text = "Fullscreen"
+
+[node name="AudioContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Audio" type="Button" parent="CenterContainer/VBoxContainer/AudioContainer"]
+layout_mode = 2
+theme = ExtResource("2_tkmbs")
+text = "Audio"
+
+[node name="Volume" type="HSlider" parent="CenterContainer/VBoxContainer/AudioContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme = ExtResource("2_tkmbs")
+value = 50.0
+tick_count = 5
+ticks_on_borders = true
+
+[node name="Back" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_tkmbs")
+text = "Back"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_mx1sf")
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Fullscreen" to="." method="_on_fullscreen_pressed"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/Fullscreen" to="." method="_on_fullscreen_toggled"]
+[connection signal="drag_ended" from="CenterContainer/VBoxContainer/AudioContainer/Volume" to="." method="_on_volume_drag_ended"]
+[connection signal="drag_started" from="CenterContainer/VBoxContainer/AudioContainer/Volume" to="." method="_on_volume_drag_started"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/AudioContainer/Volume" to="." method="_on_volume_value_changed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
