@@ -95,7 +95,7 @@ offset_bottom = 33.0
 grow_horizontal = 0
 grow_vertical = 0
 rotation = -1.57079
-max_value = 30.0
+max_value = 20.0
 show_percentage = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
