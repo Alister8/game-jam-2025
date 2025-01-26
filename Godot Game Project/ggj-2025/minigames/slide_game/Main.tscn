@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c04js872l70y"]
+[gd_scene load_steps=28 format=3 uid="uid://c04js872l70y"]
 
 [ext_resource type="Script" uid="uid://cflc2bmio8f6l" path="res://minigames/slide_game/scripts/slide_game.gd" id="1_yehqo"]
 [ext_resource type="PackedScene" uid="uid://jqagqcmkd2tt" path="res://minigames/slide_game/bar/Bar.tscn" id="2_86a4g"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cuqqqmsacubem" path="res://minigames/slide_game/assets/models/stool.tscn" id="8_8d0rk"]
 [ext_resource type="PackedScene" uid="uid://bkuq45k230r13" path="res://minigames/slide_game/assets/models/lamp.tscn" id="8_domts"]
 [ext_resource type="PackedScene" uid="uid://d0anrt8gok02q" path="res://minigames/slide_game/CowboyPath.tscn" id="10_utaqm"]
+[ext_resource type="Script" uid="uid://d1q1fskmyuskt" path="res://minigames/slide_game/scripts/cowboy_controller.gd" id="12_873iv"]
 
 [sub_resource type="Animation" id="Animation_ie4rx"]
 length = 0.001
@@ -77,6 +78,34 @@ tonemap_mode = 2
 glow_intensity = 5.6
 adjustment_enabled = true
 adjustment_contrast = 1.1
+
+[sub_resource type="Curve3D" id="Curve3D_cc2es"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 1.245, 0, 3.66, 0, 0, 0, 0, 0, 0, 0, 0.2, 0),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_31yy6"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 2.15739, 0, 3.43656, 0, 0, 0, 0, 0, 0, 0, 0.2, 0),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_n0noa"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 3.455, 0, 3.51, 0, 0, 0, 0, 0, 0, 0, 0.2, 0),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_4gb5n"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 5.28, 0, 3.72, 0, 0, 0, 0, 0, 0, 0, 0.2, 0),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_yehqo")
@@ -170,20 +199,6 @@ environment = SubResource("Environment_86a4g")
 [node name="MugSpawn" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.179521, 0.742794, 0.0107074)
 
-[node name="TargetSpawns" type="Node3D" parent="."]
-
-[node name="TargetSpawn" type="Marker3D" parent="TargetSpawns"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.61705, 0.469232, 0.0966802)
-
-[node name="TargetSpawn2" type="Marker3D" parent="TargetSpawns"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.70612, 0.469232, 0.0966802)
-
-[node name="TargetSpawn3" type="Marker3D" parent="TargetSpawns"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.55136, 0.469232, 0.0966802)
-
-[node name="TargetSpawn4" type="Marker3D" parent="TargetSpawns"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.40124, 0.469232, 0.0966802)
-
 [node name="CamAnchor3" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 4.61705, 2.10903, 0.0966802)
 
@@ -231,6 +246,37 @@ light_color = Color(0.903825, 0.734796, 0.673432, 1)
 light_energy = 2.0
 omni_range = 6.997
 
-[node name="CowboyPaths" type="Node3D" parent="."]
+[node name="CowboyController" type="Node3D" parent="."]
+script = ExtResource("12_873iv")
 
-[node name="CowboyPath" parent="CowboyPaths" instance=ExtResource("10_utaqm")]
+[node name="CowboyPath" parent="CowboyController" node_paths=PackedStringArray("target_spawn") instance=ExtResource("10_utaqm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.73383, 0.6032, 1.02544)
+curve = SubResource("Curve3D_cc2es")
+target_spawn = NodePath("TargetSpawn")
+
+[node name="TargetSpawn" type="Marker3D" parent="CowboyController/CowboyPath"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0649995, -0.945)
+
+[node name="CowboyPath2" parent="CowboyController" node_paths=PackedStringArray("target_spawn") instance=ExtResource("10_utaqm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.69911, 0.6032, 1.02544)
+curve = SubResource("Curve3D_31yy6")
+target_spawn = NodePath("TargetSpawn")
+
+[node name="TargetSpawn" type="Marker3D" parent="CowboyController/CowboyPath2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0649995, -0.945)
+
+[node name="CowboyPath3" parent="CowboyController" node_paths=PackedStringArray("target_spawn") instance=ExtResource("10_utaqm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.60292, 0.6032, 1.02544)
+curve = SubResource("Curve3D_n0noa")
+target_spawn = NodePath("TargetSpawn")
+
+[node name="TargetSpawn" type="Marker3D" parent="CowboyController/CowboyPath3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0649995, -0.945)
+
+[node name="CowboyPath4" parent="CowboyController" node_paths=PackedStringArray("target_spawn") instance=ExtResource("10_utaqm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.49341, 0.6032, 1.02544)
+curve = SubResource("Curve3D_4gb5n")
+target_spawn = NodePath("TargetSpawn")
+
+[node name="TargetSpawn" type="Marker3D" parent="CowboyController/CowboyPath4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0649995, -0.945)

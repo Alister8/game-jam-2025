@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=3 uid="uid://bfblb8n8eu5o5"]
+
+[ext_resource type="Script" uid="uid://2uvoyeh2gcf1" path="res://minigames/slide_game/scripts/cowboy.gd" id="1_f1i0q"]
+[ext_resource type="Texture2D" uid="uid://bve3r0vmh4nxg" path="res://minigames/slide_game/assets/images/cowboy_stand.png" id="3_45cwr"]
+[ext_resource type="Texture2D" uid="uid://bhs7gorgxkaga" path="res://minigames/slide_game/assets/images/cowboy_sit.png" id="3_tttxu"]
+
+[sub_resource type="Animation" id="Animation_45cwr"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+
+[sub_resource type="Animation" id="Animation_f1i0q"]
+resource_name = "bob"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite3D")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 1, 0, -0.1, 0, 1.96667, 1, 0, 0, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tttxu"]
+_data = {
+&"RESET": SubResource("Animation_45cwr"),
+&"bob": SubResource("Animation_f1i0q")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tttxu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_45cwr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_tttxu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Cowboy" type="PathFollow3D"]
+loop = false
+tilt_enabled = false
+script = ExtResource("1_f1i0q")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_tttxu")
+}
+autoplay = "bob"
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
+billboard = 2
+sprite_frames = SubResource("SpriteFrames_tttxu")
+frame_progress = 0.904995

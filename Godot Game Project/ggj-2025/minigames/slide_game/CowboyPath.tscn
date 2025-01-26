@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://d0anrt8gok02q"]
 
-[sub_resource type="Curve3D" id="Curve3D_8mu2o"]
+[ext_resource type="Script" uid="uid://c0kxk8p0ml0to" path="res://minigames/slide_game/scripts/cowboy_path.gd" id="1_m5f2v"]
 
-[node name="CowboyPath" type="Path3D"]
-curve = SubResource("Curve3D_8mu2o")
+[node name="Path3D" type="Path3D"]
+script = ExtResource("1_m5f2v")
