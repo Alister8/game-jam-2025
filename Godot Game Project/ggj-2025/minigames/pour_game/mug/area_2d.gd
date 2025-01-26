@@ -14,7 +14,6 @@ func _process(delta):
 func _on_area_entered(area):
 	var pour = get_overlapping_bodies()
 	var pour_size = pour.size()
-	Global.drinks[Guid.NewGuid()] = pour_size
 	get_tree().reload_current_scene()
 	for i in pour:
 		i.queue_free()
