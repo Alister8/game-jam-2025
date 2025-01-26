@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bfhaxlnkuyqjg" path="res://minigames/slide_game/assets/models/room.blend" id="6_86a4g"]
 [ext_resource type="PackedScene" uid="uid://cuqqqmsacubem" path="res://minigames/slide_game/assets/models/stool.tscn" id="8_8d0rk"]
 [ext_resource type="PackedScene" uid="uid://bkuq45k230r13" path="res://minigames/slide_game/assets/models/lamp.tscn" id="8_domts"]
+[ext_resource type="PackedScene" uid="uid://d0anrt8gok02q" path="res://minigames/slide_game/CowboyPath.tscn" id="10_utaqm"]
 
 [sub_resource type="Animation" id="Animation_ie4rx"]
 length = 0.001
@@ -74,9 +75,6 @@ tonemap_mode = 2
 glow_intensity = 5.6
 adjustment_enabled = true
 adjustment_contrast = 1.1
-
-[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_8d0rk"]
-auto_exposure_scale = 0.06
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_yehqo")
@@ -155,7 +153,6 @@ transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 3.23193,
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_86a4g")
-camera_attributes = SubResource("CameraAttributesPhysical_8d0rk")
 
 [node name="MugSpawn" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.179521, 0.742794, 0.0107074)
@@ -220,3 +217,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.226886, 0)
 light_color = Color(0.903825, 0.734796, 0.673432, 1)
 light_energy = 2.0
 omni_range = 6.997
+
+[node name="CowboyPaths" type="Node3D" parent="."]
+
+[node name="CowboyPath" parent="CowboyPaths" instance=ExtResource("10_utaqm")]
