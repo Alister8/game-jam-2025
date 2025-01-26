@@ -45,7 +45,7 @@ _data = {
 &"spin": SubResource("Animation_358j6")
 }
 
-[node name="WinArea" type="Area3D"]
+[node name="Target" type="Area3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.396114, 0)

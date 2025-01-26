@@ -1,18 +1,20 @@
-[gd_scene load_steps=9 format=3 uid="uid://fojg3gv1wl5y"]
+[gd_scene load_steps=11 format=3 uid="uid://fojg3gv1wl5y"]
 
+[ext_resource type="Script" uid="uid://2i5rwfkxqqo3" path="res://minigames/slide_game/mug.gd" id="1_bpbpa"]
 [ext_resource type="Script" uid="uid://7c88h7nap6nu" path="res://minigames/slide_game/assets/materials/LiquidWobble.gd" id="2_6iuhd"]
 [ext_resource type="Shader" uid="uid://kiqhkxuabps8" path="res://minigames/slide_game/assets/shaders/stylized_liquid.gdshader" id="2_08q06"]
 [ext_resource type="PackedScene" uid="uid://bcg8ol48ba6f7" path="res://minigames/slide_game/assets/models/mug.tscn" id="2_jr3ir"]
+[ext_resource type="Gradient" uid="uid://cm8oq5j6btvcy" path="res://minigames/slide_game/assets/soda_gradient.tres" id="3_08q06"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_08q06"]
+friction = 0.1
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_xwng5"]
 height = 2.56982
 radius = 0.585938
 
-[sub_resource type="Gradient" id="Gradient_6iuhd"]
-colors = PackedColorArray(0.803527, 0.519795, 0, 1, 1, 0.866667, 0, 1)
-
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_08q06"]
-gradient = SubResource("Gradient_6iuhd")
+gradient = ExtResource("3_08q06")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bpbpa"]
 render_priority = 0
@@ -28,7 +30,10 @@ shader_parameter/wobble = Vector2(0, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bpbpa"]
 
-[node name="Mug" type="RigidBody3D" groups=["mug"]]
+[node name="Mug" type="RigidBody3D" node_paths=PackedStringArray("cam_anchor") groups=["mug"]]
+physics_material_override = SubResource("PhysicsMaterial_08q06")
+script = ExtResource("1_bpbpa")
+cam_anchor = NodePath("CamAnchor")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.0717235, 0)
@@ -41,5 +46,8 @@ transform = Transform3D(1.96, 0, 0, 0, 1.96, 0, 0, 0, 1.96, 0, -0.176, 0)
 material_override = SubResource("ShaderMaterial_bpbpa")
 surface_material_override/0 = SubResource("StandardMaterial3D_bpbpa")
 script = ExtResource("2_6iuhd")
+
+[node name="CamAnchor" type="Marker3D" parent="."]
+transform = Transform3D(0.744324, 0, -0.667819, 0, 1, 0, 0.667819, 0, 0.744324, -0.772761, 0.481502, 1.53588)
 
 [editable path="mug"]
