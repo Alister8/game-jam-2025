@@ -6,15 +6,17 @@ extends Node3D
 @onready var camera = $Camera
 var mug_cam_anchor
 @onready var cam_anchor_1 = $CamAnchor1
-@onready var cam_anchor_3 = $Target/CamAnchor3
+@onready var cam_anchor_3 = $CamAnchor3
 
 @onready var power_bar = $UI/PowerBar
-
-@onready var win_area = $Target
 
 @onready var mug_spawn = $MugSpawn
 const MUG = preload("res://minigames/slide_game/Mug.tscn")
 var current_mug
+
+const TARGET = preload("res://minigames/slide_game/Target.tscn")
+@onready var target_spawns = $TargetSpawns.get_children()
+var current_target
 
 var launch_direction
 var launch_power = 0
@@ -27,6 +29,7 @@ func _ready():
 	arrow_animation_player.speed_scale = speed_modifier
 	spawn_mug()
 	current_state = State.POWER
+	spawn_target(target_spawns.pick_random())
 
 func _physics_process(delta): 
 	match current_state:
@@ -34,7 +37,7 @@ func _physics_process(delta):
 			camera.follow(cam_anchor_1)
 			power_bar.show()
 			power_bar.value = launch_power
-			launch_power = 15 * (1 + sin(Time.get_ticks_msec() * (0.005 * speed_modifier)))
+			launch_power = 10 * (1 + sin(Time.get_ticks_msec() * (0.005 * speed_modifier)))
 			if Input.is_action_just_pressed("action_1"):
 				arrow.show()  
 				current_state = State.AIM
@@ -47,24 +50,13 @@ func _physics_process(delta):
 				power_bar.hide()  
 				current_state = State.FOLLOW
 		State.FOLLOW: 
-			if win_area.has_overlapping_bodies():
-				for body in win_area.get_overlapping_bodies():
-					if body.is_in_group("mug"):
-						camera.follow(cam_anchor_3)
-						if body.linear_velocity == Vector3.ZERO:
-							current_state = State.SUCCESS
-			else:
-				camera.follow(mug_cam_anchor)
-				if current_mug.linear_velocity == Vector3.ZERO:
-					current_state = State.FAILURE
-			if current_mug.global_position.y < 0:
+			camera.follow(mug_cam_anchor)
+			if current_mug.linear_velocity == Vector3.ZERO:
 				current_state = State.FAILURE
-		State.SUCCESS: 
-			print("you did it!")
-			current_mug.bubble_vanish()
-			spawn_mug()
+			elif current_mug.global_position.y < 0:
+				current_state = State.FAILURE
 		State.FAILURE: 
-			print("you suck!")
+			print("you missed")
 			current_mug.bubble_vanish()
 			spawn_mug()
 			
@@ -76,3 +68,21 @@ func spawn_mug():
 	current_mug.position = mug_spawn.position
 	mug_cam_anchor = current_mug.cam_anchor
 	current_state = State.POWER
+	
+	
+func spawn_target(spawn_point: Node3D):
+	current_target = TARGET.instantiate()
+	add_child(current_target)
+	current_target.global_position = spawn_point.position
+	current_target.mug_recieved.connect(_on_mug_recieved)
+	
+
+func _on_mug_recieved():
+	Global.cash += 10
+	print("you did it! You have $" + var_to_str(Global.cash))
+	current_mug.bubble_vanish()
+	spawn_target(target_spawns.pick_random())
+	spawn_mug()
+
+func soda_served():
+	print("soda served")

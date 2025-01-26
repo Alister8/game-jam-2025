@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://fojg3gv1wl5y"]
 
-[ext_resource type="Script" uid="uid://2i5rwfkxqqo3" path="res://minigames/slide_game/scripts/mug.gd" id="1_bpbpa"]
+[ext_resource type="Script" path="res://minigames/slide_game/scripts/mug.gd" id="1_bpbpa"]
 [ext_resource type="Script" uid="uid://7c88h7nap6nu" path="res://minigames/slide_game/assets/materials/LiquidWobble.gd" id="2_6iuhd"]
 [ext_resource type="Shader" uid="uid://kiqhkxuabps8" path="res://minigames/slide_game/assets/shaders/stylized_liquid.gdshader" id="2_08q06"]
 [ext_resource type="PackedScene" uid="uid://bcg8ol48ba6f7" path="res://minigames/slide_game/assets/models/mug.tscn" id="2_jr3ir"]
