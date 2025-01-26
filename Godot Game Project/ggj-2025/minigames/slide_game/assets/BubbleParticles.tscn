@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://m6bqvim5smq8"]
+
+[ext_resource type="Script" uid="uid://0ltlu0n6mch6" path="res://minigames/slide_game/assets/bubble_particles.gd" id="1_f36e7"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xiv2w"]
+lifetime_randomness = 0.5
+emission_shape = 3
+emission_box_extents = Vector3(0.1, 0.2, 0.1)
+direction = Vector3(0, 1, 0)
+spread = 124.157
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, 1.5, 0)
+scale_max = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_845ng"]
+transparency = 1
+depth_draw_mode = 1
+albedo_color = Color(0.754222, 0.755219, 0.809868, 0.235294)
+rim_enabled = true
+rim = 0.41
+rim_tint = 0.55
+clearcoat_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_xg6vd"]
+material = SubResource("StandardMaterial3D_845ng")
+radius = 0.1
+height = 0.2
+radial_segments = 6
+rings = 3
+
+[node name="Bubbles" type="GPUParticles3D"]
+emitting = false
+amount = 50
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_xiv2w")
+draw_pass_1 = SubResource("SphereMesh_xg6vd")
+script = ExtResource("1_f36e7")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="finished" from="." to="." method="_on_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

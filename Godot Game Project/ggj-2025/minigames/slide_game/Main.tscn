@@ -1,16 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://c04js872l70y"]
+[gd_scene load_steps=13 format=3 uid="uid://c04js872l70y"]
 
 [ext_resource type="Script" uid="uid://cflc2bmio8f6l" path="res://minigames/slide_game/scripts/slide_game.gd" id="1_yehqo"]
 [ext_resource type="PackedScene" uid="uid://jqagqcmkd2tt" path="res://minigames/slide_game/bar/Bar.tscn" id="2_86a4g"]
-[ext_resource type="PackedScene" uid="uid://fojg3gv1wl5y" path="res://minigames/slide_game/Mug.tscn" id="2_sqiqn"]
 [ext_resource type="PackedScene" uid="uid://yagyfec31i3v" path="res://minigames/slide_game/Arrow.tscn" id="3_86a4g"]
-[ext_resource type="PackedScene" uid="uid://cpvuk5w34kaps" path="res://minigames/slide_game/WinArea.tscn" id="4_3m63e"]
+[ext_resource type="PackedScene" uid="uid://cpvuk5w34kaps" path="res://minigames/slide_game/Target.tscn" id="4_3m63e"]
+[ext_resource type="PackedScene" uid="uid://deav4dldfgplq" path="res://minigames/slide_game/Camera.tscn" id="5_8d0rk"]
 [ext_resource type="PackedScene" uid="uid://bfhaxlnkuyqjg" path="res://minigames/slide_game/assets/models/room.blend" id="6_86a4g"]
 [ext_resource type="PackedScene" uid="uid://cuqqqmsacubem" path="res://minigames/slide_game/assets/models/stool.tscn" id="8_8d0rk"]
 [ext_resource type="PackedScene" uid="uid://bkuq45k230r13" path="res://minigames/slide_game/assets/models/lamp.tscn" id="8_domts"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kb7vy"]
-friction = 0.15
 
 [sub_resource type="Animation" id="Animation_ie4rx"]
 length = 0.001
@@ -54,19 +51,13 @@ _data = {
 tonemap_mode = 2
 glow_intensity = 5.6
 adjustment_enabled = true
+adjustment_contrast = 1.1
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_yehqo")
 
 [node name="CSGBox3D" parent="." instance=ExtResource("2_86a4g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.33414, -0.132149, 0)
-
-[node name="Mug" parent="." instance=ExtResource("2_sqiqn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.179521, 0.742794, 0.0107074)
-physics_material_override = SubResource("PhysicsMaterial_kb7vy")
-
-[node name="CamAnchor2" type="Marker3D" parent="Mug"]
-transform = Transform3D(0.744324, 0, -0.667819, 0, 1, 0, 0.667819, 0, 0.744324, -0.772761, 0.481502, 1.53588)
 
 [node name="Arrow" parent="." instance=ExtResource("3_86a4g")]
 transform = Transform3D(0.0999994, 0, -0.173205, 0, 0.2, 0, 0.173205, 0, 0.0999994, 0.213227, 0.6, 0.0151288)
@@ -110,11 +101,11 @@ show_percentage = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
-[node name="Camera" type="Camera3D" parent="."]
-transform = Transform3D(-3.58861e-08, 0.570958, -0.82098, 2.49574e-08, 0.82098, 0.570958, 1, -2.84217e-14, -4.37114e-08, -0.610188, 2.03154, 6.97793e-16)
+[node name="Camera" parent="." instance=ExtResource("5_8d0rk")]
+transform = Transform3D(-2.63545e-08, 0.570958, -0.82098, 2.49574e-08, 0.82098, 0.570958, 1, -5.44219e-09, -3.58862e-08, -0.610188, 2.03154, 6.97793e-16)
 
 [node name="WinArea" parent="." instance=ExtResource("4_3m63e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.61705, 0.469232, 0.0669774)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.61705, 0.469232, 0.0966802)
 
 [node name="CamAnchor3" type="Marker3D" parent="WinArea"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.6398, 0)
@@ -132,7 +123,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.9, 1.68077)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.226886, 0)
 light_color = Color(0.903825, 0.734796, 0.673432, 1)
 light_energy = 2.0
-shadow_enabled = true
 omni_range = 6.997
 
 [node name="lamp2" parent="." instance=ExtResource("8_domts")]
@@ -142,19 +132,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7235, 1.9, 1.68077)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.226886, 0)
 light_color = Color(0.903825, 0.734796, 0.673432, 1)
 light_energy = 2.0
-shadow_enabled = true
 omni_range = 6.997
 
 [node name="Stools" type="Node3D" parent="."]
 
 [node name="stool" parent="Stools" instance=ExtResource("8_8d0rk")]
-transform = Transform3D(0.989784, 0, 0.142577, 0, 1, 0, -0.142577, 0, 0.989784, 2.10304, -0.659545, 1.05249)
+transform = Transform3D(0.989784, 0, 0.142577, 0, 1, 0, -0.142577, 0, 0.989784, 2.26726, -0.659545, 1.05249)
 
 [node name="stool2" parent="Stools" instance=ExtResource("8_8d0rk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.27883, -0.659545, 1.05249)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.39925, -0.659545, 1.05249)
 
 [node name="stool3" parent="Stools" instance=ExtResource("8_8d0rk")]
-transform = Transform3D(0.976454, 0, -0.215724, 0, 1, 0, 0.215724, 0, 0.976454, 4.49594, -0.659545, 1.05249)
+transform = Transform3D(0.976454, 0, -0.215724, 0, 1, 0, 0.215724, 0, 0.976454, 4.62296, -0.659545, 1.05249)
 
 [node name="stool4" parent="Stools" instance=ExtResource("8_8d0rk")]
-transform = Transform3D(0.99633, 0, -0.0855908, 0, 1, 0, 0.0855908, 0, 0.99633, 0.821593, -0.659545, 1.05249)
+transform = Transform3D(0.99633, 0, -0.0855908, 0, 1, 0, 0.0855908, 0, 0.99633, 1.08418, -0.659545, 1.05249)
+
+[node name="MugSpawn" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.179521, 0.742794, 0.0107074)
