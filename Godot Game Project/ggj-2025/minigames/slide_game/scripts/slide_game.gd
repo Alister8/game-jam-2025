@@ -6,11 +6,11 @@ extends Node3D
 @onready var camera = $Camera
 var mug_cam_anchor
 @onready var cam_anchor_1 = $CamAnchor1
-@onready var cam_anchor_3 = $WinArea/CamAnchor3
+@onready var cam_anchor_3 = $Target/CamAnchor3
 
 @onready var power_bar = $UI/PowerBar
 
-@onready var win_area = $WinArea
+@onready var win_area = $Target
 
 @onready var mug_spawn = $MugSpawn
 const MUG = preload("res://minigames/slide_game/Mug.tscn")
@@ -71,6 +71,7 @@ func _physics_process(delta):
 			
 func spawn_mug():
 	current_mug = MUG.instantiate()
+	current_mug.get_node("mug/Mug/Soda").material_override.set_shader_parameter("liquid_height", 0.36)
 	add_child(current_mug)
 	current_mug.position = mug_spawn.position
 	mug_cam_anchor = current_mug.cam_anchor

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://deav4dldfgplq"]
 
-[ext_resource type="Script" uid="uid://cwvu8maxb8r6y" path="res://minigames/slide_game/camera.gd" id="1_esbja"]
+[ext_resource type="Script" uid="uid://cwvu8maxb8r6y" path="res://minigames/slide_game/scripts/camera.gd" id="1_esbja"]
 
 [node name="Camera" type="Camera3D"]
 script = ExtResource("1_esbja")
