@@ -1,9 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://c04js872l70y"]
+[gd_scene load_steps=21 format=3 uid="uid://c04js872l70y"]
 
 [ext_resource type="Script" uid="uid://cflc2bmio8f6l" path="res://minigames/slide_game/scripts/slide_game.gd" id="1_yehqo"]
 [ext_resource type="PackedScene" uid="uid://jqagqcmkd2tt" path="res://minigames/slide_game/bar/Bar.tscn" id="2_86a4g"]
 [ext_resource type="PackedScene" uid="uid://yagyfec31i3v" path="res://minigames/slide_game/Arrow.tscn" id="3_86a4g"]
+[ext_resource type="FontFile" uid="uid://dqj5bawxrigkg" path="res://minigames/slide_game/assets/fonts/old-town/OldTown.ttf" id="4_domts"]
 [ext_resource type="PackedScene" uid="uid://deav4dldfgplq" path="res://minigames/slide_game/Camera.tscn" id="5_8d0rk"]
+[ext_resource type="PackedScene" uid="uid://b5on0vkifi3lq" path="res://minigames/slide_game/Poster.tscn" id="5_utaqm"]
 [ext_resource type="PackedScene" uid="uid://bfhaxlnkuyqjg" path="res://minigames/slide_game/assets/models/room.blend" id="6_86a4g"]
 [ext_resource type="PackedScene" uid="uid://cuqqqmsacubem" path="res://minigames/slide_game/assets/models/stool.tscn" id="8_8d0rk"]
 [ext_resource type="PackedScene" uid="uid://bkuq45k230r13" path="res://minigames/slide_game/assets/models/lamp.tscn" id="8_domts"]
@@ -63,16 +65,23 @@ bg_color = Color(1, 1, 1, 0.768627)
 [sub_resource type="LabelSettings" id="LabelSettings_3m63e"]
 font_size = 66
 
+[sub_resource type="Theme" id="Theme_8d0rk"]
+default_font = ExtResource("4_domts")
+default_font_size = 150
+
 [sub_resource type="Environment" id="Environment_86a4g"]
 tonemap_mode = 2
 glow_intensity = 5.6
 adjustment_enabled = true
 adjustment_contrast = 1.1
 
+[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_8d0rk"]
+auto_exposure_scale = 0.06
+
 [node name="Main" type="Node3D"]
 script = ExtResource("1_yehqo")
 
-[node name="CSGBox3D" parent="." instance=ExtResource("2_86a4g")]
+[node name="Bar" parent="." instance=ExtResource("2_86a4g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.33414, -0.132149, 0)
 
 [node name="Arrow" parent="." instance=ExtResource("3_86a4g")]
@@ -127,6 +136,15 @@ offset_bottom = 10.9979
 text = "POWER"
 label_settings = SubResource("LabelSettings_3m63e")
 
+[node name="CashLabel" type="Label" parent="UI"]
+layout_mode = 1
+offset_left = 29.0
+offset_top = 20.0
+offset_right = 105.0
+offset_bottom = 83.0
+theme = SubResource("Theme_8d0rk")
+text = "Cash: $0"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="Camera" parent="." instance=ExtResource("5_8d0rk")]
@@ -137,38 +155,7 @@ transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 3.23193,
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_86a4g")
-
-[node name="lamp" parent="." instance=ExtResource("8_domts")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.9, 1.68077)
-
-[node name="OmniLight3D" type="OmniLight3D" parent="lamp"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.226886, 0)
-light_color = Color(0.903825, 0.734796, 0.673432, 1)
-light_energy = 2.0
-omni_range = 6.997
-
-[node name="lamp2" parent="." instance=ExtResource("8_domts")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7235, 1.9, 1.68077)
-
-[node name="OmniLight3D" type="OmniLight3D" parent="lamp2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.226886, 0)
-light_color = Color(0.903825, 0.734796, 0.673432, 1)
-light_energy = 2.0
-omni_range = 6.997
-
-[node name="Stools" type="Node3D" parent="."]
-
-[node name="stool" parent="Stools" instance=ExtResource("8_8d0rk")]
-transform = Transform3D(0.989784, 0, 0.142577, 0, 1, 0, -0.142577, 0, 0.989784, 2.55201, -0.659545, 1.05249)
-
-[node name="stool2" parent="Stools" instance=ExtResource("8_8d0rk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.684, -0.659545, 1.05249)
-
-[node name="stool3" parent="Stools" instance=ExtResource("8_8d0rk")]
-transform = Transform3D(0.976454, 0, -0.215724, 0, 1, 0, 0.215724, 0, 0.976454, 4.7149, -0.659545, 1.05249)
-
-[node name="stool4" parent="Stools" instance=ExtResource("8_8d0rk")]
-transform = Transform3D(0.99633, 0, -0.0855908, 0, 1, 0, 0.0855908, 0, 0.99633, 1.44628, -0.659545, 1.05249)
+camera_attributes = SubResource("CameraAttributesPhysical_8d0rk")
 
 [node name="MugSpawn" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.179521, 0.742794, 0.0107074)
@@ -189,3 +176,47 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.40124, 0.469232, 0.0966802)
 
 [node name="CamAnchor3" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 4.61705, 2.10903, 0.0966802)
+
+[node name="Decorations" type="Node3D" parent="."]
+
+[node name="Stools" type="Node3D" parent="Decorations"]
+
+[node name="stool" parent="Decorations/Stools" instance=ExtResource("8_8d0rk")]
+transform = Transform3D(0.989784, 0, 0.142577, 0, 1, 0, -0.142577, 0, 0.989784, 2.55201, -0.659545, 1.05249)
+
+[node name="stool2" parent="Decorations/Stools" instance=ExtResource("8_8d0rk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.684, -0.659545, 1.05249)
+
+[node name="stool3" parent="Decorations/Stools" instance=ExtResource("8_8d0rk")]
+transform = Transform3D(0.976454, 0, -0.215724, 0, 1, 0, 0.215724, 0, 0.976454, 4.7149, -0.659545, 1.05249)
+
+[node name="stool4" parent="Decorations/Stools" instance=ExtResource("8_8d0rk")]
+transform = Transform3D(0.99633, 0, -0.0855908, 0, 1, 0, 0.0855908, 0, 0.99633, 1.44628, -0.659545, 1.05249)
+
+[node name="Posters" type="Node3D" parent="Decorations"]
+
+[node name="Poster" parent="Decorations/Posters" instance=ExtResource("5_utaqm")]
+transform = Transform3D(0.997591, 0.0693733, 0, -0.0693733, 0.997591, 0, 0, 0, 1, 3.8247, 1.66175, -2.31427)
+
+[node name="Poster5" parent="Decorations/Posters" instance=ExtResource("5_utaqm")]
+transform = Transform3D(-4.37114e-08, 0, -1, -0.0558564, 0.998439, 2.44156e-09, 0.998439, 0.0558564, -4.36431e-08, 7.87933, 1.42897, 1.15617)
+
+[node name="Lamps" type="Node3D" parent="Decorations"]
+
+[node name="Lamp" parent="Decorations/Lamps" instance=ExtResource("8_domts")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.9, 1.68077)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Decorations/Lamps/Lamp"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.226886, 0)
+light_color = Color(0.903825, 0.734796, 0.673432, 1)
+light_energy = 2.0
+omni_range = 6.997
+
+[node name="Lamp2" parent="Decorations/Lamps" instance=ExtResource("8_domts")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7235, 1.9, 1.68077)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Decorations/Lamps/Lamp2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.226886, 0)
+light_color = Color(0.903825, 0.734796, 0.673432, 1)
+light_energy = 2.0
+omni_range = 6.997

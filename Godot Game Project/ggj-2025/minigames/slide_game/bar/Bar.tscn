@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cucynv66jtjfi" path="res://minigames/slide_game/assets/models/bar.tscn" id="1_kb7vy"]
 
-[node name="Node3D" type="Node3D"]
+[node name="Bar" type="Node3D"]
 
 [node name="bar" parent="." instance=ExtResource("1_kb7vy")]
 transform = Transform3D(-2.62268e-08, 0, -0.6, 0, 0.6, 0, 0.6, 0, -2.62268e-08, 0, 0, 0)

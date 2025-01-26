@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5on0vkifi3lq"]
+
+[ext_resource type="Texture2D" uid="uid://brv2ewggucjf2" path="res://minigames/slide_game/assets/images/poster.jpg" id="1_ug2nj"]
+
+[node name="Poster" type="Sprite3D"]
+pixel_size = 0.0075
+shaded = true
+double_sided = false
+texture_filter = 2
+texture = ExtResource("1_ug2nj")
