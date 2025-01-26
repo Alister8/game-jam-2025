@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c04js872l70y"]
+[gd_scene load_steps=17 format=3 uid="uid://c04js872l70y"]
 
 [ext_resource type="Script" uid="uid://cflc2bmio8f6l" path="res://minigames/slide_game/scripts/slide_game.gd" id="1_yehqo"]
 [ext_resource type="PackedScene" uid="uid://jqagqcmkd2tt" path="res://minigames/slide_game/bar/Bar.tscn" id="2_86a4g"]
@@ -46,6 +46,23 @@ _data = {
 &"arrow": SubResource("Animation_4s55a")
 }
 
+[sub_resource type="Gradient" id="Gradient_3m63e"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.0327869, 0.180328, 0.827869)
+colors = PackedColorArray(0.819608, 0, 0.270588, 1, 0, 0.539505, 0.440977, 1, 0.818929, 0, 0.271189, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_domts"]
+gradient = SubResource("Gradient_3m63e")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8d0rk"]
+texture = SubResource("GradientTexture1D_domts")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3m63e"]
+bg_color = Color(1, 1, 1, 0.768627)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3m63e"]
+font_size = 66
+
 [sub_resource type="Environment" id="Environment_86a4g"]
 tonemap_mode = 2
 glow_intensity = 5.6
@@ -81,7 +98,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PowerBar" type="ProgressBar" parent="UI"]
-visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -95,8 +111,21 @@ offset_bottom = 33.0
 grow_horizontal = 0
 grow_vertical = 0
 rotation = -1.57079
+theme_override_styles/background = SubResource("StyleBoxTexture_8d0rk")
+theme_override_styles/fill = SubResource("StyleBoxFlat_3m63e")
 max_value = 20.0
+step = 0.1
+value = 5.6
 show_percentage = false
+
+[node name="Label" type="Label" parent="UI/PowerBar"]
+layout_mode = 0
+offset_left = 327.0
+offset_top = -80.0021
+offset_right = 568.0
+offset_bottom = 10.9979
+text = "POWER"
+label_settings = SubResource("LabelSettings_3m63e")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
