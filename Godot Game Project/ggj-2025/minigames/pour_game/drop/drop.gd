@@ -7,6 +7,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if position.y > 1080 :
-		queue_free() 
+	if position.y > 1080:
+		Global.spilled_drops += 1
+		queue_free()
 	pass

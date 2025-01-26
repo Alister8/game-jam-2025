@@ -1,16 +1,68 @@
-[gd_scene load_steps=4 format=3 uid="uid://bo2fi3koo0vma"]
+[gd_scene load_steps=10 format=3 uid="uid://bo2fi3koo0vma"]
 
-[ext_resource type="Script" uid="uid://cpaip14v23jeu" path="res://minigames/pour_game/tap/main_tap.gd" id="1_jmo1h"]
 [ext_resource type="PackedScene" uid="uid://driri24d0gnpl" path="res://minigames/pour_game/mug/mug.tscn" id="1_m0sof"]
 [ext_resource type="Script" uid="uid://cqsl3vnmccos6" path="res://minigames/pour_game/tap/tap.gd" id="2_4hjv5"]
+[ext_resource type="Script" uid="uid://dcx6ca8jgkky5" path="res://minigames/pour_game/tap/label.gd" id="2_v8g32"]
+
+[sub_resource type="Gradient" id="Gradient_v8g32"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5r5ph"]
+gradient = SubResource("Gradient_v8g32")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_phioc"]
+size = Vector2(415, 51)
+
+[sub_resource type="Gradient" id="Gradient_5r5ph"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_phioc"]
+gradient = SubResource("Gradient_5r5ph")
+fill_from = Vector2(0.384615, 0.688034)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v8g32"]
+size = Vector2(152.5, 218.25)
 
 [node name="tap_game" type="Node2D"]
-script = ExtResource("1_jmo1h")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(660, 7)
+collision_layer = 3
+collision_mask = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(173, 423)
+scale = Vector2(6.40625, 1)
+texture = SubResource("GradientTexture2D_5r5ph")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(177, 426)
+shape = SubResource("RectangleShape2D_phioc")
+
+[node name="spilled_drops" type="Label" parent="."]
+offset_left = 749.0
+offset_top = 41.0
+offset_right = 951.0
+offset_bottom = 113.0
+script = ExtResource("2_v8g32")
 
 [node name="drop_spawner" type="Node2D" parent="."]
-position = Vector2(395, 30)
+position = Vector2(597, 25)
 script = ExtResource("2_4hjv5")
 drop_scene_path = "res://minigames/pour_game/drop/drop.tscn"
 mug = NodePath("../mug")
 
+[node name="Sprite2D" type="Sprite2D" parent="drop_spawner"]
+position = Vector2(-4, 0)
+texture = SubResource("GradientTexture2D_phioc")
+
 [node name="mug" parent="." instance=ExtResource("1_m0sof")]
+position = Vector2(254, 320)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 5
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(815.25, 300.125)
+shape = SubResource("RectangleShape2D_v8g32")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

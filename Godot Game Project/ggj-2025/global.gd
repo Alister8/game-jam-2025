@@ -1,6 +1,9 @@
 extends Node
 
 var mug_position
+var spilled_drops: int = 0
+var cash: int = 0
+var drinks: Dictionary
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

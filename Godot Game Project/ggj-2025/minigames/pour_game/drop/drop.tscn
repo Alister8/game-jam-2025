@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dtofcxpu8dl68" path="res://minigames/pour_game/drop/drop.gd" id="1_ig0rb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bab8o"]
-radius = 12.1655
+radius = 4.0
 
 [sub_resource type="Gradient" id="Gradient_q46kj"]
 offsets = PackedFloat32Array(0, 0.624339, 0.669312)
@@ -11,12 +11,14 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.0671937, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ig0rb"]
 gradient = SubResource("Gradient_q46kj")
-width = 528
-height = 528
+width = 256
+height = 256
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
 [node name="Node2D" type="RigidBody2D"]
+collision_layer = 5
+collision_mask = 5
 script = ExtResource("1_ig0rb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

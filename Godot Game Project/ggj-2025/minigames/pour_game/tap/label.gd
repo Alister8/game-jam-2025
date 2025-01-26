@@ -1,7 +1,5 @@
-extends Sprite2D
+extends Label
 
-
-@export var mug: Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -10,6 +8,5 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	position = mug.global_position
-	rotation = mug.global_rotation
+	text = "spilled drops: " + var_to_str(Global.spilled_drops)
 	pass
