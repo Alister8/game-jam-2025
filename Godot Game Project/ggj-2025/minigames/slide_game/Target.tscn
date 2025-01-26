@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cpvuk5w34kaps"]
+[gd_scene load_steps=7 format=3 uid="uid://cpvuk5w34kaps"]
 
 [ext_resource type="PackedScene" uid="uid://pec85r36hakm" path="res://minigames/slide_game/assets/models/goal.tscn" id="1_358j6"]
+[ext_resource type="Script" uid="uid://de6b2devbh5mr" path="res://minigames/slide_game/target.gd" id="1_gynt6"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ie4rx"]
 height = 0.843719
@@ -46,6 +47,7 @@ _data = {
 }
 
 [node name="Target" type="Area3D"]
+script = ExtResource("1_gynt6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.396114, 0)

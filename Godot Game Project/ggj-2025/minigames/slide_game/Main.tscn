@@ -104,10 +104,10 @@ show_percentage = false
 [node name="Camera" parent="." instance=ExtResource("5_8d0rk")]
 transform = Transform3D(-2.63545e-08, 0.570958, -0.82098, 2.49574e-08, 0.82098, 0.570958, 1, -5.44219e-09, -3.58862e-08, -0.610188, 2.03154, 6.97793e-16)
 
-[node name="WinArea" parent="." instance=ExtResource("4_3m63e")]
+[node name="Target" parent="." instance=ExtResource("4_3m63e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.61705, 0.469232, 0.0966802)
 
-[node name="CamAnchor3" type="Marker3D" parent="WinArea"]
+[node name="CamAnchor3" type="Marker3D" parent="Target"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.6398, 0)
 
 [node name="room" parent="." instance=ExtResource("6_86a4g")]
