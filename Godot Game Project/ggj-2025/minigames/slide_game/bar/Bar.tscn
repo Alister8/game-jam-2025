@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://jqagqcmkd2tt"]
 
-[ext_resource type="PackedScene" uid="uid://cucynv66jtjfi" path="res://minigames/slide_game/assets/models/bar.tscn" id="1_kb7vy"]
+[ext_resource type="PackedScene" uid="uid://dvbir6qbhawal" path="res://minigames/slide_game/assets/models/bar.gltf" id="2_4s55a"]
 
 [node name="Bar" type="Node3D"]
 
-[node name="bar" parent="." instance=ExtResource("1_kb7vy")]
+[node name="bar" parent="." instance=ExtResource("2_4s55a")]
 transform = Transform3D(-2.62268e-08, 0, -0.6, 0, 0.6, 0, 0.6, 0, -2.62268e-08, 0, 0, 0)
