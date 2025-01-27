@@ -111,7 +111,7 @@ point_count = 2
 script = ExtResource("1_yehqo")
 
 [node name="Bar" parent="." instance=ExtResource("2_86a4g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.33414, -0.132149, 0)
+transform = Transform3D(-2.62268e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.62268e-08, 2.3229, -0.132149, 0.0580515)
 
 [node name="Arrow" parent="." instance=ExtResource("3_86a4g")]
 transform = Transform3D(0.0999994, 0, -0.173205, 0, 0.2, 0, 0.173205, 0, 0.0999994, 0.213227, 0.6, 0.0151288)
