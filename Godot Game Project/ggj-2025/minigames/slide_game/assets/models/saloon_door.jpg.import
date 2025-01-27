@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4f0386rtgttf"
-path.s3tc="res://.godot/imported/floor_wood.jpg-78dc0a5f16a52cff1433f0c802e5f1a8.s3tc.ctex"
-path.etc2="res://.godot/imported/floor_wood.jpg-78dc0a5f16a52cff1433f0c802e5f1a8.etc2.ctex"
+uid="uid://barxc08ps774p"
+path.s3tc="res://.godot/imported/saloon_door.jpg-631be50f5bb53a1b15b8980835c4409f.s3tc.ctex"
+path.etc2="res://.godot/imported/saloon_door.jpg-631be50f5bb53a1b15b8980835c4409f.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://minigames/slide_game/assets/models/textures/floor_wood.jpg"
-dest_files=["res://.godot/imported/floor_wood.jpg-78dc0a5f16a52cff1433f0c802e5f1a8.s3tc.ctex", "res://.godot/imported/floor_wood.jpg-78dc0a5f16a52cff1433f0c802e5f1a8.etc2.ctex"]
+source_file="res://minigames/slide_game/assets/models/saloon_door.jpg"
+dest_files=["res://.godot/imported/saloon_door.jpg-631be50f5bb53a1b15b8980835c4409f.s3tc.ctex", "res://.godot/imported/saloon_door.jpg-631be50f5bb53a1b15b8980835c4409f.etc2.ctex"]
 
 [params]
 

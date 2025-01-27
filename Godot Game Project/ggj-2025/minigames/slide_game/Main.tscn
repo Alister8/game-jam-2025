@@ -7,12 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://deav4dldfgplq" path="res://minigames/slide_game/Camera.tscn" id="5_8d0rk"]
 [ext_resource type="Texture2D" uid="uid://e5xkju5ehap8" path="res://minigames/slide_game/assets/mug_progress_bar/mugbar_overlay.png" id="5_dwi0s"]
 [ext_resource type="PackedScene" uid="uid://b5on0vkifi3lq" path="res://minigames/slide_game/Poster.tscn" id="5_utaqm"]
-[ext_resource type="PackedScene" uid="uid://bfhaxlnkuyqjg" path="res://minigames/slide_game/assets/models/room.blend" id="6_86a4g"]
 [ext_resource type="Texture2D" uid="uid://cm6ty7rovp15n" path="res://minigames/slide_game/assets/mug_progress_bar/mugbar_progress.png" id="6_873iv"]
 [ext_resource type="PackedScene" uid="uid://cuqqqmsacubem" path="res://minigames/slide_game/assets/models/stool.tscn" id="8_8d0rk"]
 [ext_resource type="PackedScene" uid="uid://bkuq45k230r13" path="res://minigames/slide_game/assets/models/lamp.tscn" id="8_domts"]
 [ext_resource type="PackedScene" uid="uid://d0anrt8gok02q" path="res://minigames/slide_game/CowboyPath.tscn" id="10_utaqm"]
 [ext_resource type="Script" uid="uid://d1q1fskmyuskt" path="res://minigames/slide_game/scripts/cowboy_controller.gd" id="12_873iv"]
+[ext_resource type="PackedScene" uid="uid://ci0d0hc8s8i6g" path="res://minigames/slide_game/assets/models/room.gltf" id="14_31yy6"]
 
 [sub_resource type="Animation" id="Animation_ie4rx"]
 length = 0.001
@@ -192,9 +192,6 @@ texture_progress = ExtResource("6_873iv")
 [node name="Camera" parent="." instance=ExtResource("5_8d0rk")]
 transform = Transform3D(-2.63545e-08, 0.570958, -0.82098, 2.49574e-08, 0.82098, 0.570958, 1, -5.44219e-09, -3.58862e-08, -0.610188, 2.03154, 6.97793e-16)
 
-[node name="room" parent="." instance=ExtResource("6_86a4g")]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 3.23193, -0.652913, 0.756762)
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_86a4g")
 
@@ -282,3 +279,6 @@ target_spawn = NodePath("TargetSpawn")
 
 [node name="TargetSpawn" type="Marker3D" parent="CowboyController/CowboyPath4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0649995, -0.945)
+
+[node name="room" parent="." instance=ExtResource("14_31yy6")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.232, -0.653, 0.757)
