@@ -10,11 +10,11 @@ config_version=5
 
 [application]
 
-config/name="GGJ 2025"
+config/name="Soda Slinger"
 run/main_scene="uid://ufeufcv4o335"
 config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/bg_color=Color(0.630258, 0.539545, 0.446877, 1)
-config/icon="res://icon.svg"
+config/icon="uid://bve3r0vmh4nxg"
 
 [autoload]
 

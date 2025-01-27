@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://ufeufcv4o335"]
 
-[ext_resource type="Script" uid="uid://by7mbu6qw3w58" path="res://menus/main_menu/main_menu.gd" id="1_xbn2l"]
+[ext_resource type="Script" path="res://menus/main_menu/main_menu.gd" id="1_xbn2l"]
 [ext_resource type="Texture2D" uid="uid://brv2ewggucjf2" path="res://minigames/slide_game/assets/images/poster.jpg" id="2_vu5tu"]
 [ext_resource type="Theme" uid="uid://b3riqp06mymfj" path="res://menus/main_menu/theme.tres" id="3_vu5tu"]
 

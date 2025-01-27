@@ -44,6 +44,11 @@ theme = ExtResource("2_e64mb")
 text = "0"
 label_settings = SubResource("LabelSettings_43nje")
 
+[node name="PlayAgain" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_e64mb")
+text = "Play Again"
+
 [node name="MainMenu" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_e64mb")
@@ -54,5 +59,6 @@ layout_mode = 2
 theme = ExtResource("2_e64mb")
 text = "Quit"
 
+[connection signal="pressed" from="CenterContainer/VBoxContainer/PlayAgain" to="." method="_on_play_again_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
